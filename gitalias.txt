@@ -1,0 +1,23 @@
+##
+# ## Usage
+#
+# Typical usage for a typical user:
+#
+#   * Save this file as a dot file in your home directory: `~/.gitalias.txt`
+#
+#   * Edit your git config dot file in your home directory such as  `~/.gitconfig`
+#
+#   * Include the path to this file.
+#
+# Example file `~/.gitconfig` with an entry to include the file `~/.gitalias.txt`:
+#
+#     [include]
+#       path = gitalias.txt
+##
+
+[alias]
+  # Checkout branch making the local like the origin one
+  checkout-origin = !"f() { branch=${1-master}; git fetch origin $branch && git checkout -B $branch origin/$branch; }; f"
+
+  # Merge with default commit name
+  merge-origin = !"f() { git fetch origin $1 && git merge origin/$1 --no-ff --no-edit --no-verify; }; f"
